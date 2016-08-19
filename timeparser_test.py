@@ -1,6 +1,6 @@
 # coding: utf-8
 import unittest
-from timeparser import parse
+from timeparser import parse, ParseError
 
 
 class TimeParserTest(unittest.TestCase):
@@ -64,10 +64,10 @@ class TimeParserTest(unittest.TestCase):
         '''不正な文字列が指定された場合の parse のテスト。
         例外を送出する。
         '''
-        self.assertRaises(Exception, parse, 'hoge')
-        self.assertRaises(Exception, parse, '1year')
-        self.assertRaises(Exception, parse, 'oooo1')
-        self.assertRaises(Exception, parse, '1has;pgou')
+        self.assertRaises(ParseError, parse, 'hoge')
+        self.assertRaises(ParseError, parse, '1year')
+        self.assertRaises(ParseError, parse, 'oooo1')
+        self.assertRaises(ParseError, parse, '1has;pgou')
 
 
 if __name__ == '__main__':

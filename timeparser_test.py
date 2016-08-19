@@ -1,6 +1,6 @@
 # coding: utf-8
 import unittest
-from time_parser import parse
+from timeparser import parse
 
 
 class TimeParserTest(unittest.TestCase):

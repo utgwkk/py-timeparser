@@ -7,6 +7,6 @@ setup(name='py-timeparser',
       author_email='utagawa.kiki@gmail.com',
       url='https://github.com/utgwkk/py-timeparser',
       py_modules=['timeparser'],
-      install_requires=['six']
+      install_requires=['six'],
       license='MIT'
       )

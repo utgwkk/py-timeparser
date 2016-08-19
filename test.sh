@@ -2,5 +2,5 @@
 set -eu
 
 nosetests
-pep8 *.py
-python -m doctest *.py -v
+pep8 timeparser.py
+python -m doctest timeparser.py -v

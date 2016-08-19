@@ -38,7 +38,8 @@ def parse(s):
     # 時間を表す文字列(例: 1hour, 30min, 20s)にマッチしたグループだけを残す
     times = [x for x in m.groups() if isinstance(x, str) and
              re.match(r'[0-9]+[a-z]+', x)]
-    return reduce(lambda x, y: x + y, [_parse_time_with_unit(z) for z in times])
+    return reduce(lambda x, y: x + y,
+                  [_parse_time_with_unit(z) for z in times])
 
 if __name__ == '__main__':
     print(parse('8minute10'))

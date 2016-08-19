@@ -33,7 +33,6 @@ def parse(s):
     if s is None:
         return None
 
-    # 末尾が数字なら 's' を付ける
     if s[-1] in '0123456789':
         s += 's'
 
@@ -41,7 +40,6 @@ def parse(s):
     if not m:
         raise Exception('invalid string: "%s"' % s)
 
-    # 時間を表す文字列(例: 1hour, 30min, 20s)にマッチしたグループだけを残す
     times = [x for x in m.groups() if isinstance(x, str) and
              re.match(r'[0-9]+[a-z]+', x)]
     return reduce(lambda x, y: x + y,

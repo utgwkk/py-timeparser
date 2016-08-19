@@ -4,6 +4,10 @@ import re
 from six.moves import reduce
 
 
+class ParseError(Exception):
+    pass
+
+
 def parse(s):
     '''
     Parse time string and return seconds.
@@ -38,7 +42,7 @@ def parse(s):
 
     m = re.match(r'^(%s)?(%s)?(%s)?$' % (RE_HOUR, RE_MINUTE, RE_SECOND), s)
     if not m:
-        raise Exception('invalid string: "%s"' % s)
+        raise ParseError('invalid string: "%s"' % s)
 
     times = [x for x in m.groups() if isinstance(x, str) and
              re.match(r'[0-9]+[a-z]+', x)]

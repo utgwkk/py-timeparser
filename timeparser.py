@@ -6,6 +6,12 @@ from six.moves import reduce
 
 def parse(s):
     '''
+    Parse time string and return seconds.
+
+    >>> parse('10s')
+    10
+    >>> parse('1hour5min')
+    3900
     '''
     RE_HOUR = r'([0-9]+)h(our)?'
     RE_MINUTE = r'([0-9]+)m(in(ute)?)?'

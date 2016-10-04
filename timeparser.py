@@ -34,8 +34,8 @@ def parse(s):
             retval = int(ms.group(1))
         return retval
 
-    if s is None:
-        return None
+    if isinstance(s, (type(None), int, float)):
+        return s
 
     if s[-1] in '0123456789':
         s += 's'

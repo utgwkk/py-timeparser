@@ -29,6 +29,14 @@ class TimeParserTest(unittest.TestCase):
         '''
         self.assertEqual(parse('43'), 43)
 
+    def test_parse_parse_second_as_number(self):
+        '''Tests timeparser.parse() when second is passed.
+        When provided a number.
+        Treats as second.
+        '''
+        self.assertEqual(parse(float(43)), 43)
+        self.assertEqual(parse(43), 43)
+
     def test_parse_parse_minute(self):
         '''Tests timeparser.parse() when minute is passed.
         '''

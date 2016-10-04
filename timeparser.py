@@ -44,8 +44,8 @@ def parse(s):
     if s[-1] in '0123456789':
         s += 's'
 
-    m = re.match(r'^(%s)?(%s)?(%s)?(%s)?$' % (RE_DAY, RE_HOUR, 
-                                              RE_MINUTE, RE_SECOND), 
+    m = re.match(r'^(%s)?(%s)?(%s)?(%s)?$' % (RE_DAY, RE_HOUR,
+                                              RE_MINUTE, RE_SECOND),
                  s)
     if not m:
         raise ParseError('invalid string: "%s"' % s)

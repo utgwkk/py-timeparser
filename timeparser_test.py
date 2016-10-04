@@ -42,6 +42,16 @@ class TimeParserTest(unittest.TestCase):
         '''
         self.assertEqual(parse('4minute'), 60 * 4)
 
+    def test_parse_parse_day(self):
+        '''Tests timeparser.parse() when day is passed.
+        '''
+        self.assertEqual(parse('1day'), 24 * 3600)
+
+    def test_parse_parse_day_abbrev(self):
+        '''Tests timeparser.parse() when day is passed.
+        '''
+        self.assertEqual(parse('1d'), 24*3600)
+
     def test_parse_parse_minute_abbrev(self):
         '''Tests timeparser.parse() when minute is passed.
         When abbreviation.
@@ -68,6 +78,7 @@ class TimeParserTest(unittest.TestCase):
         self.assertEqual(parse('11hour45m14sec'), 3600 * 11 + 60 * 45 + 14)
         self.assertEqual(parse('8minute10'), 60 * 8 + 10)
         self.assertEqual(parse('2h5sec'), 3600 * 2 + 5)
+        self.assertEqual(parse('2d4h10s'), (2*24*3600)+(4*60*60)+10)
 
     def test_parse_parse_time_error(self):
         '''Tests timeparser.parse() when invalid string is passed.

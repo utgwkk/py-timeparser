@@ -1,6 +1,7 @@
 # coding: utf-8
 from __future__ import print_function
 import re
+from datetime import timedelta
 from six.moves import reduce
 
 
@@ -8,14 +9,19 @@ class ParseError(Exception):
     pass
 
 
-def parse(s):
+def parse(s, return_type=int):
     '''
     Parse time string and return seconds.
+    You can specify the type of return value both int or datetime.timedelta
+    with 'return_type' argument.
 
     >>> parse('10s')
     10
     >>> parse('1hour5min')
     3900
+    >>> from datetime import timedelta
+    >>> parse('10s', return_type=timedelta)
+    datetime.timedelta(0, 10)
     '''
     RE_HOUR = r'([0-9]+)h(our)?'
     RE_MINUTE = r'([0-9]+)m(in(ute)?)?'
@@ -46,8 +52,16 @@ def parse(s):
 
     times = [x for x in m.groups() if isinstance(x, str) and
              re.match(r'[0-9]+[a-z]+', x)]
-    return reduce(lambda x, y: x + y,
-                  [_parse_time_with_unit(z) for z in times])
+    seconds = reduce(lambda x, y: x + y,
+                     [_parse_time_with_unit(z) for z in times])
+
+    if return_type is int:
+        return seconds
+    elif return_type is timedelta:
+        return timedelta(seconds=seconds)
+    else:
+        raise TypeError('return_type "{}" is not supported.'.format(
+            return_type.__name__))
 
 if __name__ == '__main__':
     print(parse('8minute10'))

@@ -23,16 +23,20 @@ def parse(s, return_type=int):
     >>> parse('10s', return_type=timedelta)
     datetime.timedelta(0, 10)
     '''
+    RE_DAY = r'([0-9]+)d(ay)?'
     RE_HOUR = r'([0-9]+)h(our)?'
     RE_MINUTE = r'([0-9]+)m(in(ute)?)?'
     RE_SECOND = r'([0-9]+)(s(ec(ond)?)?)?'
 
     def _parse_time_with_unit(s):
         retval = 0
+        md = re.match(RE_DAY, s)
         mh = re.match(RE_HOUR, s)
         mm = re.match(RE_MINUTE, s)
         ms = re.match(RE_SECOND, s)
-        if mh:
+        if md:
+            retval = 86400 * int(md.group(1))
+        elif mh:
             retval = 3600 * int(mh.group(1))
         elif mm:
             retval = 60 * int(mm.group(1))
@@ -40,13 +44,15 @@ def parse(s, return_type=int):
             retval = int(ms.group(1))
         return retval
 
-    if s is None:
-        return None
+    if isinstance(s, (type(None), int, float)):
+        return s
 
     if s[-1] in '0123456789':
         s += 's'
 
-    m = re.match(r'^(%s)?(%s)?(%s)?$' % (RE_HOUR, RE_MINUTE, RE_SECOND), s)
+    m = re.match(r'^(%s)?(%s)?(%s)?(%s)?$' % (RE_DAY, RE_HOUR,
+                                              RE_MINUTE, RE_SECOND),
+                 s)
     if not m:
         raise ParseError('invalid string: "%s"' % s)
 

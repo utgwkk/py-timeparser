@@ -1,5 +1,6 @@
 # coding: utf-8
 import unittest
+from datetime import timedelta
 from timeparser import parse, ParseError
 
 
@@ -89,6 +90,13 @@ class TimeParserTest(unittest.TestCase):
         self.assertRaises(ParseError, parse, 'oooo1')
         self.assertRaises(ParseError, parse, '1has;pgou')
 
+    def test_parse_returns_timedelta(self):
+        '''Tests timeparser.parse() with return_value=datetime.timedelta.
+        '''
+        self.assertEqual(
+            parse('1h5min10s', return_type=timedelta),
+            timedelta(hours=1, minutes=5, seconds=10)
+        )
 
 if __name__ == '__main__':
     unittest.main()

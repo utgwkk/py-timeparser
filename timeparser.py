@@ -13,14 +13,6 @@ def parse(s, return_type=int):
     Parse time string and return seconds.
     You can specify the type of return value both int or datetime.timedelta
     with 'return_type' argument.
-
-    >>> parse('10s')
-    10
-    >>> parse('1hour5min')
-    3900
-    >>> from datetime import timedelta
-    >>> parse('10s', return_type=timedelta)
-    datetime.timedelta(0, 10)
     '''
     RE_DAY = r'([0-9]+)d(ay)?'
     RE_HOUR = r'([0-9]+)h(our)?'

@@ -2,7 +2,6 @@
 from __future__ import print_function
 import re
 from datetime import timedelta
-from six.moves import reduce
 
 
 class ParseError(Exception):
@@ -58,8 +57,7 @@ def parse(s, return_type=int):
 
     times = [x for x in m.groups() if isinstance(x, str) and
              re.match(r'[0-9]+[a-z]+', x)]
-    seconds = reduce(lambda x, y: x + y,
-                     [_parse_time_with_unit(z) for z in times])
+    seconds = sum(_parse_time_with_unit(z) for z in times)
 
     if return_type is int:
         return seconds

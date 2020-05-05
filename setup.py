@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='py-timeparser',
-      version='0.3.2',
+      version='0.3.4',
       description='Parse time string (e.g. 1h5min)',
       author='utgwkk',
       author_email='utagawa.kiki@gmail.com',

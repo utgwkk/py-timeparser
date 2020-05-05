@@ -9,7 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Publish package
+    - name: Checkout
+      uses: actions/checkout@v2
+
+      - name: Publish package
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__

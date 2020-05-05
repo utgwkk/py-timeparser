@@ -1,7 +1,9 @@
 name: deploy
 
 on:
-  create:
+  push:
+    branches:
+      - master
     tags:
       - v*
 

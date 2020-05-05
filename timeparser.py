@@ -1,5 +1,4 @@
 # coding: utf-8
-from __future__ import print_function
 import re
 from datetime import timedelta
 
@@ -58,6 +57,3 @@ def parse(s, return_type=int):
     else:
         raise TypeError('return_type "{}" is not supported.'.format(
             return_type.__name__))
-
-if __name__ == '__main__':
-    print(parse('8minute10'))

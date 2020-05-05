@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-      - name: Publish package
+    - name: Publish package
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
